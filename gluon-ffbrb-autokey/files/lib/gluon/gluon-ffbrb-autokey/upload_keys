@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# this script determines a list of all gateway servers configured on a node 
+# and tries to upload its fastd key to each of those servers by calling the
+# script upload_key_to_server
+
+LOCAL_MAC=$(sed 's/://g' /lib/gluon/core/sysconfig/primary_mac)
+
+wget -q "http://${PEER_ADDRESS}/upload_key?mac=${LOCAL_MAC}&key=${LOCAL_KEY}" -O /dev/null
